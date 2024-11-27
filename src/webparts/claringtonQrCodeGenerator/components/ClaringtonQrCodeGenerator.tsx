@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styles from './ClaringtonQrCodeGenerator.module.scss';
 import type { IClaringtonQrCodeGeneratorProps } from './IClaringtonQrCodeGeneratorProps';
-import { IButtonProps, PrimaryButton, TextField } from '@fluentui/react';
+import { PrimaryButton, TextField } from '@fluentui/react';
 import { QRCode } from '@progress/kendo-react-barcodes';
 import { saveAs } from '@progress/kendo-file-saver';
 
@@ -22,7 +22,7 @@ export default class ClaringtonQrCodeGenerator extends React.Component<IClaringt
     return (
       <section className={`${styles.claringtonQrCodeGenerator}`}>
         <div className={styles.welcome}>
-          <h2>Clarington QR Code Generator</h2>
+          <h2>Clarington QR Codes</h2>
         </div>
         <div>
           <TextField label="Convert URL to QR Code" placeholder='https://claringtonnet.sharepoint.com/' onChange={(e, newValue) => this.setState({ userInput: newValue })} />
@@ -38,7 +38,7 @@ export default class ClaringtonQrCodeGenerator extends React.Component<IClaringt
                     size={300}
                     border={{
                       color: '#005a93',
-                      width: 2
+                      width: 3
                     }} />
                 </div>
                 <PrimaryButton
@@ -62,6 +62,18 @@ export default class ClaringtonQrCodeGenerator extends React.Component<IClaringt
                         }
                       },
                       {
+                        key: 'exportPDF',
+                        text: 'PDF',
+                        iconProps: { iconName: 'PDF' },
+                        onClick: (e, item) => {
+                          if (!QR_CODE.current) {
+                            alert('Failed to export as PDF');
+                            return;
+                          }
+                        },
+                        disabled: true
+                      },
+                      {
                         key: 'exportSVG',
                         text: 'SVG',
                         iconProps: { iconName: 'Emoji2' },
@@ -75,24 +87,8 @@ export default class ClaringtonQrCodeGenerator extends React.Component<IClaringt
                           });
                         }
                       },
-                      {
-                        key: 'exportPDF',
-                        text: 'PDF',
-                        iconProps: { iconName: 'PDF' },
-                        onClick: (e, item) => {
-                          if (!QR_CODE.current) {
-                            alert('Failed to export as PDF');
-                            return;
-                          }
-                          
-                        }
-                      },
                     ],
                     directionalHintFixed: true,
-                  }}
-                  // Optional callback to do other actions (besides opening the menu) on click
-                  onMenuClick={(ev, button: IButtonProps) => {
-                    console.log('OnMenuClick', button);
                   }}
                 />
               </div>

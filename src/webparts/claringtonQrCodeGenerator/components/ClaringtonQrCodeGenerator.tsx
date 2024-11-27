@@ -30,17 +30,6 @@ export default class ClaringtonQrCodeGenerator extends React.Component<IClaringt
             {
               this.state?.userInput &&
               <div style={centerDivStyles}>
-                <div style={{ marginTop: '20px', marginBottom: '20px' }}>
-                  <QRCode
-                    ref={QR_CODE}
-                    value={this.state.userInput}
-                    errorCorrection="L"
-                    size={300}
-                    border={{
-                      color: '#005a93',
-                      width: 3
-                    }} />
-                </div>
                 <PrimaryButton
                   style={{ width: '100%' }}
                   text="Export As"
@@ -91,6 +80,17 @@ export default class ClaringtonQrCodeGenerator extends React.Component<IClaringt
                     directionalHintFixed: true,
                   }}
                 />
+                <div style={{ marginTop: '10px', marginBottom: '10px' }}>
+                  <QRCode
+                    ref={QR_CODE}
+                    value={this.state.userInput}
+                    errorCorrection="L"
+                    size={300}
+                    border={{
+                      color: '#005a93',
+                      width: 3
+                    }} />
+                </div>
               </div>
             }
           </div>

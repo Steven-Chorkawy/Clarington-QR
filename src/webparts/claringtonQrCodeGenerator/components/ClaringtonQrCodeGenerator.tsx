@@ -22,10 +22,10 @@ export default class ClaringtonQrCodeGenerator extends React.Component<IClaringt
 
     const printID = 'PrintThis';
 
-    const _printPage = () => {
-      let element = document.getElementById(printID);
-      var printContent = element?.innerHTML;
-      var originalContent = window.document.body.innerHTML;
+    const _printPage = (): void => {
+      const element = document.getElementById(printID);
+      const printContent = element?.innerHTML;
+      const originalContent = window.document.body.innerHTML;
 
       if (printContent) {
         window.document.body.innerHTML = printContent;
@@ -49,7 +49,14 @@ export default class ClaringtonQrCodeGenerator extends React.Component<IClaringt
               this.state?.userInput &&
               <div style={centerDivStyles}>
                 <div id={printID} style={{ marginTop: '20px', marginBottom: '20px' }}>
-                  <QRCode value={this.state.userInput} errorCorrection="L" />
+                  <QRCode
+                    value={this.state.userInput}
+                    errorCorrection="L"
+                    size={300}
+                    border={{
+                      color: '#005a93',
+                      width: 2
+                    }} />
                 </div>
                 <PrimaryButton style={{ width: '100%' }} iconProps={{ iconName: 'Print' }} text="Export to PDF" onClick={_printPage} />
               </div>

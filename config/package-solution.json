@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "clarington-qr-client-side-solution",
+    "id": "c68e57fa-f2a6-43bf-866d-4bb34621a1cb",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.20.0"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "Clarington-QR description"
+      },
+      "longDescription": {
+        "default": "Clarington-QR description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "clarington-qr Feature",
+        "description": "The feature that activates elements of the clarington-qr solution.",
+        "id": "b1f33f9f-b7ed-44c6-9096-829fc9d9465b",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/clarington-qr.sppkg"
+  }
+}

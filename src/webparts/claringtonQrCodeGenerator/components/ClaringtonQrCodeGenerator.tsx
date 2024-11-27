@@ -20,7 +20,7 @@ export default class ClaringtonQrCodeGenerator extends React.Component<IClaringt
     const QR_CODE = React.createRef<QRCode>();
 
     return (
-      <section className={`${styles.claringtonQrCodeGenerator}`}>
+      <section className={`${styles.claringtonQrCodeGenerator}`} style={{ maxWidth: '1000px', marginLeft: 'auto', marginRight: 'auto' }}>
         <div className={styles.welcome}>
           <h2>Clarington QR Codes</h2>
         </div>

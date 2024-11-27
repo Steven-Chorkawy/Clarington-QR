@@ -14,7 +14,8 @@ export default class ClaringtonQrCodeGenerator extends React.Component<IClaringt
     const centerDivStyles: React.CSSProperties = {
       maxWidth: 'fit-content',
       marginLeft: 'auto',
-      marginRight: 'auto'
+      marginRight: 'auto',
+      marginTop: '5px'
     };
 
     const QR_CODE = React.createRef<QRCode>();

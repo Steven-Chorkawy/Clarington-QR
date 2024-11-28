@@ -4,6 +4,8 @@ import type { IClaringtonQrCodeGeneratorProps } from './IClaringtonQrCodeGenerat
 import { PrimaryButton, TextField } from '@fluentui/react';
 import { QRCode } from '@progress/kendo-react-barcodes';
 import { saveAs } from '@progress/kendo-file-saver';
+import { PDFExport } from "@progress/kendo-react-pdf";
+
 
 export interface IClaringtonQrCodeGeneratorState {
   userInput?: string;
@@ -19,6 +21,8 @@ export default class ClaringtonQrCodeGenerator extends React.Component<IClaringt
     };
 
     const QR_CODE = React.createRef<QRCode>();
+    const pdfExportComponent = React.useRef<PDFExport>(null);
+
 
     return (
       <section className={`${styles.claringtonQrCodeGenerator}`} style={{ maxWidth: '1000px', marginLeft: 'auto', marginRight: 'auto' }}>
@@ -57,11 +61,16 @@ export default class ClaringtonQrCodeGenerator extends React.Component<IClaringt
                         iconProps: { iconName: 'PDF' },
                         onClick: (e, item) => {
                           if (!QR_CODE.current) {
-                            alert('Failed to export as PDF');
+                            alert('Failed to export to PDF');
+                            return;
+                          }
+                          if (pdfExportComponent.current) {
+                            pdfExportComponent.current.save();
+                          } else {
+                            alert('Failed to export to PDF');
                             return;
                           }
                         },
-                        disabled: true
                       },
                       {
                         key: 'exportSVG',
@@ -81,17 +90,25 @@ export default class ClaringtonQrCodeGenerator extends React.Component<IClaringt
                     directionalHintFixed: true,
                   }}
                 />
-                <div style={{ marginTop: '10px', marginBottom: '10px' }}>
-                  <QRCode
-                    ref={QR_CODE}
-                    value={this.state.userInput}
-                    errorCorrection="L"
-                    size={300}
-                    border={{
-                      color: '#005a93',
-                      width: 3
-                    }} />
-                </div>
+                <PDFExport
+                  ref={pdfExportComponent}
+                  paperSize="auto"
+                  margin={40}
+                  fileName={`Clarington QR Code`}
+                  author="Clarington QR Code App"
+                >
+                  <div style={{ marginTop: '10px', marginBottom: '10px' }}>
+                    <QRCode
+                      ref={QR_CODE}
+                      value={this.state.userInput}
+                      errorCorrection="L"
+                      size={300}
+                      border={{
+                        color: '#005a93',
+                        width: 3
+                      }} />
+                  </div>
+                </PDFExport>
               </div>
             }
           </div>

@@ -6,7 +6,6 @@ import { QRCode } from '@progress/kendo-react-barcodes';
 import { saveAs } from '@progress/kendo-file-saver';
 import { PDFExport } from "@progress/kendo-react-pdf";
 
-
 export interface IClaringtonQrCodeGeneratorState {
   userInput?: string;
 }
@@ -21,8 +20,7 @@ export default class ClaringtonQrCodeGenerator extends React.Component<IClaringt
     };
 
     const QR_CODE = React.createRef<QRCode>();
-    const pdfExportComponent = React.useRef<PDFExport>(null);
-
+    const pdfExportComponent = React.createRef<PDFExport>();
 
     return (
       <section className={`${styles.claringtonQrCodeGenerator}`} style={{ maxWidth: '1000px', marginLeft: 'auto', marginRight: 'auto' }}>

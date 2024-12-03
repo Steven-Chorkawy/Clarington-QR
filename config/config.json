@@ -11,9 +11,6 @@
       ]
     }
   },
-  "externals": {
-    "react-dom/server":"node_modules/react-dom/umd/react-dom-server.browser.production.min.js"
-  },
   "localizedResources": {
     "ClaringtonQrCodeGeneratorWebPartStrings": "lib/webparts/claringtonQrCodeGenerator/loc/{locale}.js"
   }

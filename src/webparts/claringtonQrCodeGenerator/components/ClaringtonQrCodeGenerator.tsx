@@ -4,7 +4,6 @@ import type { IClaringtonQrCodeGeneratorProps } from './IClaringtonQrCodeGenerat
 import { PrimaryButton, TextField } from '@fluentui/react';
 import { QRCode } from '@progress/kendo-react-barcodes';
 import { saveAs } from '@progress/kendo-file-saver';
-import { PDFExport } from "@progress/kendo-react-pdf";
 
 export interface IClaringtonQrCodeGeneratorState {
   userInput?: string;
@@ -20,7 +19,7 @@ export default class ClaringtonQrCodeGenerator extends React.Component<IClaringt
     };
 
     const QR_CODE = React.createRef<QRCode>();
-    const pdfExportComponent = React.createRef<PDFExport>();
+    // const pdfExportComponent = React.createRef<PDFExport>();
 
     return (
       <section className={`${styles.claringtonQrCodeGenerator}`} style={{ maxWidth: '1000px', marginLeft: 'auto', marginRight: 'auto' }}>
@@ -41,7 +40,7 @@ export default class ClaringtonQrCodeGenerator extends React.Component<IClaringt
                     items: [
                       {
                         key: 'exportImage',
-                        text: 'Image',
+                        text: 'PNG',
                         iconProps: { iconName: 'FileImage' },
                         onClick: (e, item) => {
                           if (!QR_CODE.current) {
@@ -53,23 +52,23 @@ export default class ClaringtonQrCodeGenerator extends React.Component<IClaringt
                           });
                         }
                       },
-                      {
-                        key: 'exportPDF',
-                        text: 'PDF',
-                        iconProps: { iconName: 'PDF' },
-                        onClick: (e, item) => {
-                          if (!QR_CODE.current) {
-                            alert('Failed to export to PDF');
-                            return;
-                          }
-                          if (pdfExportComponent.current) {
-                            pdfExportComponent.current.save();
-                          } else {
-                            alert('Failed to export to PDF');
-                            return;
-                          }
-                        },
-                      },
+                      // {
+                      //   key: 'exportPDF',
+                      //   text: 'PDF',
+                      //   iconProps: { iconName: 'PDF' },
+                      //   onClick: (e, item) => {
+                      //     if (!QR_CODE.current) {
+                      //       alert('Failed to export to PDF');
+                      //       return;
+                      //     }
+                      //     if (pdfExportComponent.current) {
+                      //       pdfExportComponent.current.save();
+                      //     } else {
+                      //       alert('Failed to export to PDF');
+                      //       return;
+                      //     }
+                      //   },
+                      // },
                       {
                         key: 'exportSVG',
                         text: 'SVG',
@@ -88,13 +87,13 @@ export default class ClaringtonQrCodeGenerator extends React.Component<IClaringt
                     directionalHintFixed: true,
                   }}
                 />
-                <PDFExport
+                {/* <PDFExport
                   ref={pdfExportComponent}
                   paperSize="auto"
                   margin={40}
                   fileName={`Clarington QR Code`}
                   author="Clarington QR Code App"
-                >
+                > */}
                   <div style={{ marginTop: '10px', marginBottom: '10px' }}>
                     <QRCode
                       ref={QR_CODE}
@@ -106,7 +105,7 @@ export default class ClaringtonQrCodeGenerator extends React.Component<IClaringt
                         width: 3
                       }} />
                   </div>
-                </PDFExport>
+                {/* </PDFExport> */}
               </div>
             }
           </div>

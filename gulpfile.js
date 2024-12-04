@@ -13,4 +13,13 @@ build.rig.getTasks = function () {
   return result;
 };
 
+build.configureWebpack.mergeConfig({
+  additionalConfiguration: (config) => {
+    config.resolve.alias = {
+      'react-dom/server$': 'react-dom/server.js'
+    };
+    return config;
+  }
+});
+
 build.initialize(require('gulp'));
